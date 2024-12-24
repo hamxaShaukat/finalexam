@@ -121,6 +121,7 @@ export const {
             data: {
               email,
               name,
+
               hashedPassword: "",
             },
           });
