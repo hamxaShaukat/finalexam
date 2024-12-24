@@ -1,13 +1,13 @@
-import TableComponent from '@/components/Table'
-import TaskList from '@/components/TaskList'
+
+import TaskManager from '@/components/task-mgr/task-manager'
+
 import React from 'react'
 
 const TaskListPage = () => {
   return (
-    <div>
-        <TaskList />
-        <TableComponent/>
-    </div>
+    <main className="container mx-auto p-4">
+      <TaskManager />
+    </main>
   )
 }
 

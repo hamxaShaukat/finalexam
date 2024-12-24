@@ -5,14 +5,14 @@ import { Prisma } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
   const session = await auth();
-
+  console.log(session)
   if (!session) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
   const { title, content, priority, status, dateOfExpiration } =
     await request.json();
-
+  console.log(title, content, priority, status, dateOfExpiration)
   if (!title || !priority || !status || !dateOfExpiration) {
     return NextResponse.json(
       { error: "Missing required fields" },
@@ -41,15 +41,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(tool);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
-        // Prisma unique constraint violation
-        return NextResponse.json(
-          { error: "A tool with this title already exists" },
-          { status: 400 }
-        );
-      }
-    }
+  
     console.error("Failed to create tool:", error);
     return NextResponse.json(
       { error: "Failed to create tool due to an unexpected error" },
